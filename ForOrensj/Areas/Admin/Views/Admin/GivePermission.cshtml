@@ -1,0 +1,87 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Oren.Model.Model.Entities.AppUser>
+@{
+    ViewBag.Title = "GivePermission";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section userprofilesStyle{
+    <style>
+        body {
+            padding-top: 30px;
+        }
+
+        .glyphicon {
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        small {
+            display: block;
+            line-height: 1.428571429;
+            color: #999;
+        }
+    </style>
+}
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("GivePermission", "Admin", new { Id = item.ID }, FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <img src="~/Content/pp/@item.ProfileImage" alt="" class="img-rounded img-responsive" />
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <h4>
+                                    @item.Nick
+                                </h4>
+                                <small>
+                                    <cite title="San Francisco, USA">
+                                        @item.AboutMe <i>
+                                        </i>
+                                    </cite>
+                                </small>
+                                <p>
+                                    <i class="glyphicon glyphicon-envelope"></i>@item.Email
+                                    <br />
+                                    <i class="glyphicon glyphicon-gift"></i>@item.NameSurname
+                                    @if (item.isArtist == true)
+                                    {
+                                    <p>Ressam Yetkisi istiyor</p>}
+                                    </p>
+                                    <!-- Split button -->
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-primary">
+                                            Yetki ver
+                                        </button>
+                                    </div>
+                                    <div class="btn-group">
+                                        @Html.ActionLink("Yetki verme", "DontGiveAS", new { id = item.ID }, "Admin")
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            }
+        }
+
+
+
+</div>
+
+<div class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("GivePermission", new { page }), PagedListRenderOptions.Classic)
+</div>

@@ -1,0 +1,104 @@
+﻿@model ForOrensj.Models.UserVM
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>Login V2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/img/favicon.ico" />
+    <!--===============================================================================================-->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/css/material-design-iconic-font.min.css" rel="stylesheet" />
+
+    <!--===============================================================================================-->
+    <link href="~/Content/Vendor/css/animate.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/Vendor/css/hamburgers.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/Vendor/css/animsition.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/Vendor/css/select2.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/Vendor/css/daterangepicker.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link href="~/Content/css/util.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" method="post">
+                    <span class="login100-form-title p-b-26">
+                        Giriş
+                    </span>
+                    <span class="login100-form-title p-b-48">
+                        <img src="~/Content/img/37353787_2152496234986722_9217779160506695680_n.jpg" width="250" height="250" class="zmdi zmdi-font"></img>
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "input100", @type = "text", name = "email" })
+                        <span class="focus-input100" data-placeholder="Email"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        @Html.TextBoxFor(x => x.Password, new { @class = "input100", @type = "password", name = "pass" })
+                        <span class="focus-input100" data-placeholder="Password"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" >
+                                Login
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center p-t-115">
+                        <span class="txt1">
+                            Hesabın yok mu?
+                        </span>
+
+                        <a class="txt2">
+                           @Html.ActionLink("Kayıt Ol", "Register", "Account")
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+
+    <!--===============================================================================================-->
+    <script src="~/Content/Vendor/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Vendor/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Vendor/popper.js"></script>
+    <script src="~/Content/Vendor/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Vendor/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Vendor/moment.js"></script>
+    <script src="~/Content/Vendor/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Vendor/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/main.js"></script>
+</body>
+</html>

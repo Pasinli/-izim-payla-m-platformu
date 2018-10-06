@@ -1,0 +1,12 @@
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\Oren.Core.dll.config
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\Oren.Core.dll
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\Oren.Core.pdb
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\EntityFramework.dll
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\EntityFramework.xml
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\obj\Debug\Oren.Core.csprojResolveAssemblyReference.cache
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\obj\Debug\Oren.Core.csproj.CoreCompileInputs.cache
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\obj\Debug\Oren.Core.csproj.CopyComplete
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\obj\Debug\Oren.Core.dll
+C:\Users\Hakan\source\repos\ForOrensj\Oren.Core\obj\Debug\Oren.Core.pdb

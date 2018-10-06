@@ -1,0 +1,263 @@
+﻿@model ForOrensj.Models.DTO.ArticleCommentVM
+@{
+    ViewBag.Title = "ShowArticle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@{
+
+    int i = 0;
+}
+
+@section AnasayfaPics
+{
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            font-family: 'Roboto Condensed', sans-serif;
+            letter-spacing: 0px;
+            font-size: 16px;
+            color: #6c6c6c;
+            font-weight: 400;
+            line-height: 28px;
+            background-color: #141414;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #dadada;
+            margin: 0px 0px 15px 0px;
+            font-weight: 300;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: #6c6c6c;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+            a:focus, a:hover {
+                text-decoration: none;
+                color: #ff3c2e;
+            }
+
+        .tutor-block {
+            background-color: #1a1a1a;
+            padding: 30px;
+        }
+
+        .tutor-content {
+            text-align: center;
+        }
+
+        .tutor-title {
+            margin-bottom: 5px;
+        }
+
+        .tutor-designation {
+            color: #ff3c2e;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .tutor-img img {
+            width: 100%;
+            height: 1200px;
+            margin-bottom: 30px;
+        }
+
+        .social-media {
+            background-color: #292929;
+            padding: 12px;
+            text-align: center;
+        }
+
+            .social-media span {
+                margin-right: 18px;
+                font-size: 20px;
+                font-family: "FontAwesome";
+            }
+
+        .mb60 {
+            margin-bottom: 60px;
+        }
+
+        .mt30 {
+            margin-top: 30px;
+        }
+    </style>
+
+
+
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60 text-center">
+            <h2>@Model.Article.User.NameSurname</h2>
+        </div>
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60">
+            <div class="tutor-block">
+                <div class="tutor-img">
+                    <a href="/Author/Article/ShowArticle/@Model.Article.ID"><img src="~/Content/img/@Model.Article.ImagePath"></a>
+                </div>
+                <div class="tutor-content">
+                    <a href="/Account/FullProfile/@Model.Article.User.ID"> <h5 class="tutor-title">Art By -@Model.Article.User.Nick</h5></a>
+                    <span class="tutor-designation" id="like">
+                        Beğeni - <label id="count"> @Model.Likes.Count() </label> (
+
+                        @foreach (var item in Model.Likes)
+                        {
+                            i++;
+                            if (i <= 5)
+                            {
+                                @Html.ActionLink(@item.LikerName + " - ", "FullProfile", "Account", new { id = item.AppUserId, area = "" }, new { })
+                            }
+                        }
+                        )
+                    </span>
+
+
+                    <p>@Html.Raw(Model.Article.Desc)</p>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section CommentCss{
+    <link href="~/Areas/Author/Content/CommentcSS.css" rel="stylesheet" />
+    <style>
+        .post-comments {
+            padding-bottom: 9px;
+            margin: 5px 0 5px;
+        }
+
+        .comments-nav {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 5px;
+        }
+
+        .post-comments .comment-meta {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 5px;
+        }
+
+        .post-comments .media {
+            border-left: 1px dotted #000;
+            border-bottom: 1px dotted #000;
+            margin-bottom: 5px;
+            padding-left: 10px;
+        }
+
+        .post-comments .media-heading {
+            font-size: 12px;
+            color: grey;
+        }
+
+        .post-comments .comment-meta a {
+            font-size: 12px;
+            color: grey;
+            font-weight: bolder;
+            margin-right: 5px;
+        }
+    </style>
+}
+
+    <form action="@Url.Action("AddComment","Article",new {area="Author"})" method="post" class="col-md-9" style="padding-left:30%">
+        <div class="form-group">
+            <label for="comment">Yorumunuz</label>
+            <textarea type="text" id="icerik" name="Text" class="form-control" rows="3"></textarea>
+        </div>
+        <input type="hidden" name="ArticleID" value="@Model.Article.ID" />
+        <input type="submit" class="btn btn-default">
+    </form>
+
+
+
+<div class="container">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <div class="row">
+        <!-- Contenedor Principal -->
+        <div class="comments-container">
+            <h1>Yorumlar </h1>
+            <ul id="comments-list" class="comments-list">
+                <li>
+
+                    @foreach (var item in Model.Comments)
+                    {
+                        <div class="comment-main-level">
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img src="~/Content/pp/@item.User.ProfileImage" alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name">(@item.User.Role.ToString())
+                                        <a href="">@item.User.Nick</a>
+                                    </h6>
+                                    <span>@item.AddedDate</span>
+                                   
+                                </div>
+                                <div class="comment-content">
+                                    @item.Text
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                    }
+
+
+
+
+
+
+
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+        $("#like").click(function () {
+            var id = @Model.Article.ID;
+
+            $.ajax({
+                type:"Post",
+                dataType:"Json",
+                url:"@Url.Action("Like","Account",new {area="" })/"+id,
+                success: function (response) {
+                    $("#count").text(response);
+                },
+                error: function () {
+                    $("#count").text("Bir hata ile karşılaşıldı..");
+
+                        }
+
+            })
+        })
+</script>
+

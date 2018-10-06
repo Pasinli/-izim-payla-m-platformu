@@ -1,0 +1,65 @@
+﻿
+
+<a href="@Url.Action("Messages","Account",new {area=""})" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-envelope-o"></i>
+    <span class="label label-success" id="countPop"></span>
+</a>
+<ul class="dropdown-menu">
+    <li class="header"></li>
+    <li>
+        <!-- inner menu: contains the messages -->
+        <ul class="menu">
+            <li>
+                <!-- start message -->
+                <a href="/Account/Messages">
+                    <div class="pull-left">
+                        <p>@HttpContext.Current.User.Identity.Name</p>
+                    </div>
+                    <!-- Message title and timestamp -->
+
+                    <h4 href="#" id="count"> </h4>
+
+                    <!-- The message -->
+                    <p></p>
+                </a>
+            </li>
+            <!-- end message -->
+        </ul>
+        <!-- /.menu -->
+    </li>
+
+
+    <li class="footer"></li>
+</ul>
+
+<script src="~/Content/js/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            url: "http://localhost:51139/account/messageinfo",
+            type: "GET",
+
+            success: function (data) {
+
+
+                $("#count").text(data.MessageCount + +" "+" Adet Okunmamış mesajınız var ")
+                $("#countPop").text(data.MessageCount)
+
+            },
+            error: function (data) {
+
+                $("#count").text(data.MessageCount +"  Mail sisteminde problem var..")
+
+
+            }
+
+
+
+        });
+
+
+    })
+
+
+</script>

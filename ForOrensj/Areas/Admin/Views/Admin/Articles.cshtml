@@ -1,0 +1,124 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Oren.Model.Model.Entities.Article>
+@{
+    ViewBag.Title = "DeleteArticles";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section AdminDeleteArticle
+{
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            font-family: 'Roboto Condensed', sans-serif;
+            letter-spacing: 0px;
+            font-size: 16px;
+            color: #6c6c6c;
+            font-weight: 400;
+            line-height: 28px;
+            background-color: #141414;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #dadada;
+            margin: 0px 0px 15px 0px;
+            font-weight: 300;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: #6c6c6c;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+            a:focus, a:hover {
+                text-decoration: none;
+                color: #ff3c2e;
+            }
+
+        .tutor-block {
+            background-color: #1a1a1a;
+            padding: 30px;
+        }
+
+        .tutor-content {
+            text-align: center;
+        }
+
+        .tutor-title {
+            margin-bottom: 5px;
+        }
+
+        .tutor-designation {
+            color: #ff3c2e;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .tutor-img img {
+            width: 100%;
+            height: 270px;
+            margin-bottom: 30px;
+        }
+
+        .social-media {
+            background-color: #292929;
+            padding: 12px;
+            text-align: center;
+        }
+
+            .social-media span {
+                margin-right: 18px;
+                font-size: 20px;
+                font-family: "FontAwesome";
+            }
+
+        .mb60 {
+            margin-bottom: 60px;
+        }
+
+        .mt30 {
+            margin-top: 30px;
+        }
+    </style>
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60 text-center">
+            <h2>En son Paylaşılan Çizimler</h2>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb60">
+                <div class="tutor-block">
+                    <div class="tutor-img">
+                        <img src="~/Content/img/@item.ImagePath">
+                    </div>
+                    <div class="tutor-content">
+                        <a href="/Account/FullProfile/@item.UserID"> <h5 class="tutor-title">Art By -@item.User.Nick</h5></a>
+                        <span class="tutor-designation"><a href="/Admin/Admin/DeleteArticles/@item.ID">Delete</a></span>
+                        <p>@Html.Raw(item.Desc)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<center>
+    <div class="pagedList">
+        @Html.PagedListPager(Model, page => Url.Action("Articles", new { page }), PagedListRenderOptions.TwitterBootstrapPager)
+    </div>
+</center>

@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "AddArticle";
+    Layout = "~/Areas/Author/Views/Shared/Layout.cshtml";
+}
+
+
+@model ForOrensj.Areas.Author.Models.ArticleVM
+
+
+@section input
+    {
+    <style>
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+    </style>
+    <script src="~/Areas/Author/Content/ckeditor.js"></script>
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Resim Yükle @Html.LabelFor(x=>x.Nick,HttpContext.Current.User.Identity.Name)</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("AddArticle", "Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h3>Resim Yükle</h3>
+        <label for="file-upload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Resim Seç
+        </label>
+        <input id="file-upload" name="file" type="file" />
+
+        <h3>Yazı Ekle</h3>
+
+        @Html.TextAreaFor(x => x.Desc, new { @id = "editor", @rows = "50" })
+
+         
+
+        <div class="col-xl-2">
+            <h4>Resmi sayfaya yükle</h4>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+        <br />
+        <p><strong>@Html.Label("", TempData["durum"].ToString(), new { @class = "alert-success" })</strong></p>
+}
+
+    </div>
+</div>
+
+
+@section ckJs
+{
+    
+<script>
+    
+        ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error(error);
+        } );
+</script>
+   
+
+    }

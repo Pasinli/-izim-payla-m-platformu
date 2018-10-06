@@ -1,0 +1,50 @@
+﻿@model Oren.Model.Model.Entities.AppUser
+@{
+    ViewBag.Title = "FullProfile";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@section fullp
+{
+    <link href="~/Content/css/fullProfile.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("FullProfile", "Account", FormMethod.Post))
+{
+    <div class="content">
+        <div class="card">
+            <div class="firstinfo">
+                <img src="~/Content/pp/@Model.ProfileImage" />
+                <div class="profileinfo">
+                    <h1>@Model.NameSurname</h1>
+                    <h3>@Model.Nick</h3>
+                    <p class="bio">@Model.AboutMe</p>
+                    @if (HttpContext.Current.User.Identity.Name == Model.Nick)
+    {
+                <input type="submit" name="btn" value="Bilgileri Güncelle" class="btn-primary" />
+}
+                    @if (Model.Nick == HttpContext.Current.User.Identity.Name && "Author" == Model.Role.ToString())
+    {
+                @Html.ActionLink("Resim Ekle", "AddArticle", "Author/Article")
+}
+                    @if ("Admin" == Model.Role.ToString() && Model.Nick == HttpContext.Current.User.Identity.Name)
+    {
+                @Html.ActionLink("Admin Paneli", "GivePermission", "Admin", new { area = "Admin" }, new { @class = "" })
+
+}
+                    @if("Admin" != Model.Role.ToString() && Model.Nick == HttpContext.Current.User.Identity.Name && "Author" == Model.Role.ToString())
+                    {
+                    @Html.ActionLink("Resimlerini gör", "Index", "Home", new { @id = Model.ID }, new { @class = "btn btn-primary" })
+
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+        <div class="badgescard"> <span class="devicons devicons-django"></span><span class="devicons devicons-python"> </span><span class="devicons devicons-codepen"></span><span class="devicons devicons-javascript_badge"></span><span class="devicons devicons-gulp"></span><span class="devicons devicons-angular"></span><span class="devicons devicons-sass"> </span></div>
+
+    </div>
+}
